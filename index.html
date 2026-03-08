@@ -5,47 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiyoLabs Dashboard</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            background-color: #f4f4f9;
-        }
-        .dashboard-container {
-            width: 100vw;
-            height: 100vh;
-        }
-        metabase-dashboard {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
+        body { margin: 0; padding: 0; font-family: sans-serif; background-color: #f4f4f9; }
+        .dashboard-container { width: 100vw; height: 100vh; }
+        metabase-dashboard { display: block; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
     <div class="dashboard-container">
         <script defer src="http://app.diyolabs.com/app/embed.js"></script>
+        
         <script>
-        function defineMetabaseConfig(config) {
-          window.metabaseConfig = config;
-        }
-        </script>
-
-        <script>
+          function defineMetabaseConfig(config) { window.metabaseConfig = config; }
           defineMetabaseConfig({
-            "theme": {
-              "preset": "light"
-            },
+            "theme": { "preset": "light" },
             "isGuest": true,
             "instanceUrl": "http://app.diyolabs.com"
           });
         </script>
 
-        <metabase-dashboard 
-            token="eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjF9LCJwYXJhbXMiOnt9LCJpYXQiOjE3NzI5OTYyOTgsImV4cCI6MTc3Mjk5Njg5OCwiX2VtYmVkZGluZ19wYXJhbXMiOnsiZGF0ZV9yYW5nZSI6ImVuYWJsZWQiLCJkYXRlX2dyb3VwaW5nIjoiZW5hYmxlZCIsInByb2R1Y3RfY2F0ZWdvcnkiOiJlbmFibGVkIiwidmVuZG9yIjoiZW5hYmxlZCJ9fQ.xS2zSLamzIIF-yR-K-B01xgoyxH5P3mSUfz4iug2wx4" 
-            with-title="true" 
-            with-downloads="true">
-        </metabase-dashboard>
+        <metabase-dashboard id="my-dashboard" with-title="true" with-downloads="true"></metabase-dashboard>
+
+        <script>
+          fetch('config.json')
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('my-dashboard').setAttribute('token', data.metabaseToken);
+            })
+            .catch(error => console.error('Error loading token:', error));
+        </script>
     </div>
 </body>
 </html>
