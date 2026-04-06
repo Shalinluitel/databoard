@@ -6,7 +6,10 @@
     <title>Dashboard</title>
     <style>
         body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #f4f4f9; }
-        .header { text-align: center; margin-bottom: 16px; }
+        .header { text-align: center; margin-bottom: 16px; max-width: 42rem; margin-left: auto; margin-right: auto; }
+        .header-note { font-size: 0.9rem; color: #444; line-height: 1.45; margin: 0.5rem 0 0; }
+        .header-actions { margin-top: 0.75rem; font-size: 0.95rem; }
+        .header-actions a { color: #1a73e8; }
         .looker-section {
             margin: 0 auto 28px;
             width: 100%;
@@ -34,6 +37,12 @@
 <body>
     <div class="header">
         <h1>Dashboard</h1>
+        <p class="header-note">
+            Embedded Looker Studio needs <strong>third-party cookies</strong> from Google. Browsers such as Chrome <strong>Incognito</strong> often block those, so the embed can show “Can’t access report” even though the same report works in a normal window. Allow third-party cookies for this site (click the cookie icon in the address bar), or use the link below.
+        </p>
+        <p class="header-actions">
+            <a href="https://lookerstudio.google.com/reporting/67e351b1-9170-4a8b-8c32-652529f2a0b1/page/XTL8D" target="_blank" rel="noopener noreferrer">Open report on Looker Studio</a> (works in Incognito)
+        </p>
     </div>
 
     <section class="looker-section" aria-label="Looker Studio report">
