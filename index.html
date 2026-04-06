@@ -21,8 +21,42 @@
     <style>
         body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #f4f4f9; }
         .header { text-align: center; margin-bottom: 20px; }
-        .dashboard-container { width: 100%; height: 80vh; border: 1px solid #ccc; background: #fff; }
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 80vh;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #ccc;
+            background: #fff;
+            box-sizing: border-box;
+        }
         metabase-dashboard { display: block; width: 100%; height: 100%; }
+        .looker-section {
+            margin-top: 24px;
+            margin-bottom: 28px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .looker-frame-wrap {
+            position: relative;
+            width: 100%;
+            border: 1px solid #ccc;
+            background: #fff;
+            overflow: hidden;
+            box-sizing: border-box;
+            aspect-ratio: 600 / 450;
+            max-height: min(85vh, 900px);
+        }
+        .looker-frame-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -53,5 +87,16 @@
             .catch(error => console.error('Error loading token:', error));
         </script>
     </div>
+
+    <section class="looker-section" aria-label="Looker Studio report">
+        <div class="looker-frame-wrap">
+            <iframe
+                title="Looker Studio dashboard"
+                loading="lazy"
+                src="https://lookerstudio.google.com/embed/reporting/67e351b1-9170-4a8b-8c32-652529f2a0b1/page/XTL8D"
+                allowfullscreen
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+        </div>
+    </section>
 </body>
 </html>
