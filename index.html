@@ -4,22 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiyoLabs Dashboard</title>
+    <!-- Your Metabase Cloud or self-hosted URL only — not your Vercel/GitHub Pages URL. No trailing slash. -->
+    <script>
+        window.__METABASE_BASE__ = "https://YOUR-METABASE.metabaseapp.com";
+    </script>
+    <script>
+        (function () {
+            var base = window.__METABASE_BASE__;
+            if (!base || base.indexOf("YOUR-METABASE") !== -1) return;
+            var s = document.createElement("script");
+            s.defer = true;
+            s.src = base + "/app/embed.js";
+            document.head.appendChild(s);
+        })();
+    </script>
     <style>
-        body { margin: 0; padding: 0; font-family: sans-serif; background-color: #f4f4f9; }
-        .dashboard-container { width: 100vw; height: 100vh; }
+        body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #f4f4f9; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .dashboard-container { width: 100%; height: 80vh; border: 1px solid #ccc; background: #fff; }
         metabase-dashboard { display: block; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
+    
+    <div class="header">
+        <h1>Welcome to the DiyoLabs Dashboard</h1>
+        <p>If the dashboard is blank, set <code>window.__METABASE_BASE__</code> in <code>index.html</code> to your Metabase URL (not this site’s URL), enable guest embedding in Metabase, and ensure the JWT token is valid.</p>
+    </div>
+
     <div class="dashboard-container">
-        <script defer src="http://app.diyolabs.com/app/embed.js"></script>
-        
         <script>
           function defineMetabaseConfig(config) { window.metabaseConfig = config; }
           defineMetabaseConfig({
             "theme": { "preset": "light" },
             "isGuest": true,
-            "instanceUrl": "http://app.diyolabs.com"
+            "instanceUrl": window.__METABASE_BASE__
           });
         </script>
 
